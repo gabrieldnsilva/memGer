@@ -167,10 +167,12 @@ Referências: 1 1 1 2 2 2 3 3 3 1 1 1
 Frames: 2
 ```
 
-## 👨‍💻 Autor
+## 👨‍💻 Autores
 
 **Gabriel Silva**
+
 **Kaique Carvalho**
+
 **Rogério Rodrigues**
 
 ## 📝 Licença
