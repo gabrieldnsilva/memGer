@@ -114,12 +114,11 @@ void run_test_cases(void)
     printf("╚════════════════════════════════════════════╝\n\n");
 
     printf("Executando os casos de teste mencionados no README...\n\n");
-
     test_classic_sequence();
-    printf("\n" + "─" * 50 + "\n");
+    printf("\n──────────────────────────────────────────────────\n");
 
     test_belady_anomaly();
-    printf("\n" + "─" * 50 + "\n");
+    printf("\n──────────────────────────────────────────────────\n");
 
     test_locality_reference();
 
@@ -200,12 +199,8 @@ void run_comparison_test(int references[], int num_references, int num_frames, c
     {
         printf("🏆 LRU foi mais eficiente neste caso!\n");
     }
-    printf("\n");
-}
-printf("🔄 Ambos os algoritmos tiveram o mesmo número de page faults.\n");
-}
-else
-{
-    printf("🤝 Ambos algoritmos tiveram o mesmo desempenho!\n");
-}
+    else
+    {
+        printf("🤝 Ambos algoritmos tiveram o mesmo desempenho!\n");
+    }
 }
