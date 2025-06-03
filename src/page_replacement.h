@@ -27,4 +27,11 @@ void get_references(int references[], int *num_references);
 void get_num_frames(void);
 void show_menu(void);
 
+// Funções para casos de teste
+void run_test_cases(void);
+void test_classic_sequence(void);
+void test_belady_anomaly(void);
+void test_locality_reference(void);
+void run_comparison_test(int references[], int num_references, int num_frames, const char *test_name);
+
 #endif // PAGE_REPLACEMENT_H

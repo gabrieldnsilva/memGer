@@ -101,7 +101,111 @@ void show_menu(void)
     printf("║ 1. Algoritmo FIFO                         ║\n");
     printf("║ 2. Algoritmo LRU                          ║\n");
     printf("║ 3. Comparar ambos os algoritmos           ║\n");
-    printf("║ 4. Sair                                   ║\n");
+    printf("║ 4. Executar casos de teste acadêmicos     ║\n");
+    printf("║ 5. Sair                                   ║\n");
     printf("╚════════════════════════════════════════════╝\n");
     printf("Escolha uma opção: ");
+}
+
+void run_test_cases(void)
+{
+    printf("\n╔════════════════════════════════════════════╗\n");
+    printf("║        CASOS DE TESTE ACADÊMICOS          ║\n");
+    printf("╚════════════════════════════════════════════╝\n\n");
+
+    printf("Executando os casos de teste mencionados no README...\n\n");
+
+    test_classic_sequence();
+    printf("\n" + "─" * 50 + "\n");
+
+    test_belady_anomaly();
+    printf("\n" + "─" * 50 + "\n");
+
+    test_locality_reference();
+
+    printf("\n✅ Todos os casos de teste foram executados!\n");
+}
+
+void test_classic_sequence(void)
+{
+    printf("🧪 TESTE 1: Sequência Clássica\n");
+    printf("Demonstra comportamento típico dos algoritmos\n\n");
+
+    int references[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+    int num_references = 20;
+    int num_frames = 3;
+
+    run_comparison_test(references, num_references, num_frames, "Sequência Clássica");
+}
+
+void test_belady_anomaly(void)
+{
+    printf("🧪 TESTE 2: Anomalia de Belady (FIFO)\n");
+    printf("Demonstra que FIFO pode ter MAIS faults com MAIS frames!\n\n");
+
+    int references[] = {1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5};
+    int num_references = 12;
+
+    printf("🔍 Testando com 3 frames:\n");
+    run_comparison_test(references, num_references, 3, "Belady com 3 frames");
+
+    printf("\n🔍 Testando com 4 frames:\n");
+    run_comparison_test(references, num_references, 4, "Belady com 4 frames");
+
+    printf("\n💡 OBSERVAÇÃO: Note que FIFO pode ter mais faults com 4 frames do que com 3!\n");
+    printf("   Isso é a famosa 'Anomalia de Belady' - um comportamento contraintuitivo.\n");
+}
+
+void test_locality_reference(void)
+{
+    printf("🧪 TESTE 3: Localidade de Referência\n");
+    printf("Demonstra como LRU se beneficia da localidade temporal\n\n");
+
+    int references[] = {1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1};
+    int num_references = 12;
+    int num_frames = 2;
+
+    run_comparison_test(references, num_references, num_frames, "Localidade de Referência");
+
+    printf("\n💡 OBSERVAÇÃO: LRU geralmente se sai melhor quando há localidade temporal,\n");
+    printf("   pois páginas recém-usadas têm maior probabilidade de serem usadas novamente.\n");
+}
+
+void run_comparison_test(int references[], int num_references, int num_frames, const char *test_name)
+{
+    printf("📊 Executando: %s\n", test_name);
+    printf("Referências: ");
+    for (int i = 0; i < num_references; i++)
+    {
+        printf("%d ", references[i]);
+    }
+    printf("\nFrames: %d\n", num_frames);
+
+    SimulationResult result_fifo = simulate_fifo(references, num_references, num_frames);
+    SimulationResult result_lru = simulate_lru(references, num_references, num_frames);
+
+    printf("\n📈 RESULTADO DO TESTE: %s\n", test_name);
+    printf("┌─────────────┬─────────────┐\n");
+    printf("│ Algoritmo   │ Page Faults │\n");
+    printf("├─────────────┼─────────────┤\n");
+    printf("│ FIFO        │     %2d      │\n", result_fifo.page_faults);
+    printf("│ LRU         │     %2d      │\n", result_lru.page_faults);
+    printf("└─────────────┴─────────────┘\n");
+
+    if (result_fifo.page_faults < result_lru.page_faults)
+    {
+        printf("🏆 FIFO foi mais eficiente neste caso!\n");
+    }
+    else if (result_lru.page_faults < result_fifo.page_faults)
+    {
+        printf("🏆 LRU foi mais eficiente neste caso!\n");
+    }
+    printf("\n");
+}
+printf("🔄 Ambos os algoritmos tiveram o mesmo número de page faults.\n");
+}
+else
+{
+    printf("🤝 Ambos algoritmos tiveram o mesmo desempenho!\n");
+}
 }
