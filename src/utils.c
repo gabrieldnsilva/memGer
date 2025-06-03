@@ -45,6 +45,13 @@ void get_references(int references[], int *num_references)
     printf("Digite o número de referências de página (máx %d): ", MAX_REFERENCES);
     scanf("%d", num_references);
 
+    // Validação adicional
+    if (*num_references <= 0)
+    {
+        printf("Número inválido! Usando 1 referência.\n");
+        *num_references = 1;
+    }
+
     if (*num_references > MAX_REFERENCES)
     {
         *num_references = MAX_REFERENCES;
@@ -55,6 +62,12 @@ void get_references(int references[], int *num_references)
     for (int i = 0; i < *num_references; i++)
     {
         scanf("%d", &references[i]);
+        // Validação para páginas negativas
+        if (references[i] < 0)
+        {
+            printf("Página negativa detectada, convertendo para valor absoluto.\n");
+            references[i] = abs(references[i]);
+        }
     }
 }
 
@@ -63,6 +76,13 @@ int get_num_frames(void)
     int num_frames;
     printf("Digite o número de frames de memória (máx %d): ", MAX_PAGES);
     scanf("%d", &num_frames);
+
+    // Validação adicional
+    if (num_frames <= 0)
+    {
+        printf("Número inválido! Usando 1 frame.\n");
+        num_frames = 1;
+    }
 
     if (num_frames > MAX_PAGES)
     {
