@@ -26,3 +26,5 @@ void print_simulation_summary(SimulationResult result, const char *algorithm_nam
 void get_references(int references[], int *num_references);
 void get_num_frames(void);
 void show_menu(void);
+
+#endif // PAGE_REPLACEMENT_H
