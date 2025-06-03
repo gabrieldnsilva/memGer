@@ -170,10 +170,8 @@ Frames: 2
 ## 👨‍💻 Autor
 
 **Gabriel Silva**
-
--   🎓 Estudante de Sistemas Operacionais
--   📧 Email: [seu-email@exemplo.com]
--   💼 GitHub: [@gabrieldnsilva]
+**Kaique Carvalho**
+**Rogério Rodrigues**
 
 ## 📝 Licença
 
